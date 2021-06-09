@@ -1,0 +1,53 @@
+{
+  "name": "alligator-demo-react-three-fiber",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@sentry/react": "^5.22.3",
+    "@sentry/tracing": "^5.22.3",
+    "drei": "0.0.25",
+    "gsap": "^3.2.6",
+    "i18next": "^19.7.0",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "lerp": "^1.0.3",
+    "lodash": "^4.17.20",
+    "polished": "^3.6.5",
+    "react": "^16.13.1",
+    "react-accessible-accordion": "^3.3.1",
+    "react-dom": "16.8.6",
+    "react-i18next": "^11.7.2",
+    "react-postprocessing": "^1.1.6",
+    "react-resize-detector": "^5.0.7",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.3",
+    "react-select": "^3.1.0",
+    "react-three-fiber": "^4.1.4",
+    "react-three-gui": "^0.1.5",
+    "react-use-gesture": "^7.0.15",
+    "reactour": "^1.18.4",
+    "styled-components": "^5.1.1",
+    "styled-jsx": "3.2.4",
+    "three": "^0.116.1",
+    "zustand": "^3.0.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0",
+    "typescript": "3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --loader-thickness: 5px;
+  --active: #5288f1;
+}
+
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.App {
+  /* font-family: "Open Sans", Arial, sans-serif; */
+  font-weight: 500;
+  text-align: center;
+}
+
+#root {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+.accordion__button {
+  width: auto !important;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.instructions {
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.instructions__inner {
+  position: relative;
+  /* display: none; */
+  padding: 20px;
+  width: 400px;
+  padding-top: 10%;
+  z-index: 3;
+}
+
+.instructions__inner:after {
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: blur(100px);
+  content: "";
+  top: 10%;
+  left: 0;
+  position: absolute;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.click-drag {
+  position: relative;
+  z-index: 5;
+}
+
+.click-drag p,
+.tap p {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 2.25rem;
+  /* text-transform: capitalize; */
+}
+
+.tap {
+  position: relative;
+  z-index: 5;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.click-img {
+  width: 120px;
+  animation: move;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.tap-img {
+  width: 60px;
+  animation: tap;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(200px);
+  }
+}
+
+@keyframes tap {
+  0% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(-40px);
+  }
+}
+
+.click-img img,
+.tap-img img {
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+@media (max-width: 960px) {
+  .nav-inner {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: 0.2s transform ease-in;
+    z-index: 11;
+  }
+
+  .click-drag {
+    display: none;
+  }
+
+  .tap {
+    display: flex;
+  }
+
+  .mobile-nav-btn {
+    font-size: 3rem;
+    font-weight: 400;
+    text-align: right;
+    display: block;
+    line-height: 2rem;
+  }
+
+  .show-nav .nav-inner {
+    transform: translateX(0%);
+  }
+
+  .mobile-bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 2;
+  }
+
+  .show-nav .mobile-bg {
+    display: block;
+  }
+}
