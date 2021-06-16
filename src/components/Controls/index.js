@@ -22,12 +22,10 @@ const intersectsObjects = (items) => {
   let flatArray = [];
 
   items.map((el) => {
-    // const [flatArray, setFlatArray] = useState([]);
     if (el.isGroup) {
       flatArray = [...el.children];
     } else if (el.isMesh) {
       flatArray.push(el);
-      // setFlatArray([...flatArray, el]);
     }
   });
 
@@ -44,7 +42,6 @@ function Controls({ settings }) {
   const floorCircle = React.useRef();
   const yawObject = React.useRef(new THREE.Object3D());
   const pitchObject = React.useRef(new THREE.Object3D());
-  const sceneObject = React.useRef(1);
   const [isMoving, setIsMoving] = React.useState(false);
   const activeFloor = useModel((state) => state.activeFloor);
   let [floorRegex] = React.useState(/(floor|carpet|Safe_Area)/i);
@@ -56,13 +53,13 @@ function Controls({ settings }) {
         down,
         delta: [mx, my],
         tap,
-        first
+        first,
       } = state;
 
       if (tap) {
         raycaster.setFromCamera(mouse, camera);
 
-        let sceneObj = _.find(scene.children, function(o) {
+        let sceneObj = _.find(scene.children, function (o) {
           return o.name === "Scene";
         });
 
@@ -71,16 +68,12 @@ function Controls({ settings }) {
           activeFloor
         );
 
-        // const intersectObjects = intersectsObjects(intersectsItems);
-        // console.log("intersectObjects:", intersectsObjects);
-
         var intersects = raycaster.intersectObjects(intersectsItems, false);
 
         intersects.map((intersect, i) => {
           let isFloor =
             intersect.object.name.length > 0 &&
             intersect.object.name === activeFloor;
-          // floorRegex.test(intersect.object.name);
 
           // if use tapped to the floor tween camera to that position
           if (isFloor) {
@@ -91,16 +84,12 @@ function Controls({ settings }) {
             floorCircle.current.position.copy(intersect.point);
 
             let tl = gsap.timeline();
-            // tl.to(floorCircle.current.children[0].scale, 0.6, {
-            //   x: 1.6,
-            //   y: 1.6,
-            //   z: 1.6
-            // });
+
             tl.fromTo(
               floorCircle.current.children[0].material,
               0.4,
               {
-                opacity: 1
+                opacity: 1,
               },
               {
                 opacity: 0,
@@ -109,7 +98,7 @@ function Controls({ settings }) {
                     "grab";
                   floorCircle.current.children[0].material.opacity = 0;
                   floorCircle.current.children[0].scale.set(1, 1, 1);
-                }
+                },
               },
               "-=0.4"
             );
@@ -124,7 +113,7 @@ function Controls({ settings }) {
               },
               onComplete: () => {
                 setIsMoving(false);
-              }
+              },
             });
           }
         });
@@ -136,7 +125,7 @@ function Controls({ settings }) {
           let instructions = document.querySelector(".instructions");
           gsap.to(instructions, 1.5, {
             opacity: 0,
-            onComplete: () => (instructions.style.display = "none")
+            onComplete: () => (instructions.style.display = "none"),
           });
           document.getElementsByTagName("body")[0].style.cursor = "grab";
         }
@@ -154,7 +143,7 @@ function Controls({ settings }) {
     },
     {
       domTarget: gl.domElement, // bind this hook to canvas
-      filterTaps: true //true if differenciating a click from a drag
+      filterTaps: true, //true if differenciating a click from a drag
     }
   );
 
@@ -162,7 +151,7 @@ function Controls({ settings }) {
   let move = useMove(
     (state) => {
       raycaster.setFromCamera(mouse, camera);
-      let sceneObj = _.find(scene.children, function(o) {
+      let sceneObj = _.find(scene.children, function (o) {
         return o.name === "Scene";
       });
 
@@ -207,7 +196,7 @@ function Controls({ settings }) {
   React.useEffect(() => {
     // camera.rotation.order = "YXZ";
     // camera.rotation.set(0, 0, 0);
-    floorCircle.current = _.find(scene.children, function(o) {
+    floorCircle.current = _.find(scene.children, function (o) {
       return o.name === "floorCircle";
     });
     // floorCircle.current.visible = false;
