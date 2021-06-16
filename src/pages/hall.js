@@ -71,11 +71,11 @@ const Hall = ({ width }) => {
       <Instructions />
       <LoadingPage />
       <Navbar active='room-1' />
-      <Tour
+      {/* <Tour
         steps={steps}
         isOpen={isTourOpen}
         onRequestClose={() => setIsTourOpen(false)}
-      />
+      /> */}
     </>
   );
 };
