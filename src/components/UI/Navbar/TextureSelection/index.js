@@ -21,6 +21,7 @@ const onSelectItem = (model, item, type, setSelectedItem) => {
       if (o.name.includes(type)) {
         if (type === "Wall") {
           o.material.color = color;
+          o.material.map.encoding = sRGBEncoding;
           // o.material.shininess = 6;
         } else if (type === "Door") {
           loader.load(
@@ -30,6 +31,7 @@ const onSelectItem = (model, item, type, setSelectedItem) => {
               texture.wrapS = RepeatWrapping;
               texture.wrapT = RepeatWrapping;
               texture.flipY = false;
+              texture.encoding = sRGBEncoding;
               o.material.map = texture;
               o.material.needsUpdate = true;
             },
